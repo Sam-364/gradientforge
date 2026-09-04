@@ -28,9 +28,10 @@ export default function Hero() {
             </Reveal>
             <Reveal delay={160}>
               <p className="mt-7 max-w-[560px] text-base leading-relaxed text-muted md:text-lg">
-                I turn research models into production systems: LLM serving on
-                Triton and vLLM, quantized vision pipelines running at the edge,
-                and the Rust that makes them fast.
+                I turn research models into production systems: multimodal
+                GraphRAG over tens of thousands of documents, LLM serving on
+                Triton and vLLM, quantized vision at the edge, and the Rust
+                that makes them fast.
               </p>
             </Reveal>
             <Reveal delay={240}>

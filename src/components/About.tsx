@@ -4,9 +4,9 @@ import { site } from '@/content/site';
 
 const facts = [
   { k: 'Based in', v: site.location },
-  { k: 'Education', v: 'NIT Rourkela' },
+  { k: 'Education', v: 'B.Tech, NIT Rourkela (2020–24)' },
   { k: 'Currently', v: `${site.company.name}, since 2024` },
-  { k: 'Focus', v: 'LLM inference, computer vision, robotics' },
+  { k: 'Focus', v: 'GraphRAG, LLM inference, vision, robotics' },
 ];
 
 export default function About() {
@@ -33,15 +33,17 @@ export default function About() {
                 {site.company.name}
               </a>
               , where I build production AI systems that have to hold up under
-              real load: multi-modal pipelines, high-performance inference, and
-              model deployment on constrained hardware.
+              real load: a multimodal GraphRAG platform over 50K+ documents,
+              high-performance inference, and model deployment on constrained
+              hardware.
             </p>
             <p>
               I studied at <span className="text-fg">NIT Rourkela</span> and
               spend most of my time on the gap between a paper and a service.
               That has meant migrating Python servers to Rust for a 360%
-              performance gain, and bringing tensor parallelism to Triton
-              Inference Server for 3.2× the throughput.
+              performance gain, moving inference to vLLM on Triton for 3.2× the
+              throughput, and quantizing detectors to run 4.8× faster with no
+              loss in accuracy.
             </p>
             <p>
               Outside of work I read and write about LLM internals,

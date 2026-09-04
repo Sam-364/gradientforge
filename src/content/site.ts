@@ -66,14 +66,14 @@ export const sections = [
 ];
 
 export const now = [
-  'Building a vision-language-action model for robotics at Skylark Labs',
-  'Shipping Inferno, a from-scratch LLM inference engine',
+  'Building a vision-language-action model for robotic manipulation at Skylark Labs',
+  'Shipping LegalVisor, a citation-grounded RAG for Indian contract law',
   'Writing about transformer internals on Medium',
 ];
 
 export const metrics = [
-  { value: '2+', label: 'Years shipping production ML' },
-  { value: '8+', label: 'AI pipelines in production' },
+  { value: '50K+', label: 'Documents in the GraphRAG platform' },
   { value: '3.2×', label: 'Throughput gain, vLLM on Triton' },
   { value: '360%', label: 'Speed-up from Python → Rust' },
+  { value: '4.8×', label: 'Faster inference after quantization' },
 ];

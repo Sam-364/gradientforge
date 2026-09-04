@@ -6,7 +6,7 @@ import './globals.css';
 export const metadata: Metadata = {
   title: 'Sambit Kumar Barik — Machine Learning Engineer',
   description:
-    'Machine Learning Engineer at Skylark Labs building production inference systems: LLM serving on Triton and vLLM, quantized computer vision, and Rust-backed pipelines.',
+    'Machine Learning Engineer at Skylark Labs building production AI systems: multimodal GraphRAG, LLM serving on Triton and vLLM, quantized computer vision, and Rust-backed pipelines.',
   keywords: [
     'Sambit Kumar Barik',
     'Machine Learning Engineer',
