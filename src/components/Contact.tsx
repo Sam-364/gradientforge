@@ -9,9 +9,8 @@ export default function Contact() {
       <SectionHeader index="06" title="Contact" note="Let's talk" />
       <div className="grid grid-cols-1 gap-px bg-line md:grid-cols-12">
         <Reveal className="bg-bg px-5 py-12 md:col-span-7 md:px-8 md:py-16">
-          <h3 className="max-w-[560px] text-3xl font-medium leading-[1.05] tracking-[-0.03em] text-fg md:text-5xl">
-            Working on hard LLM problems or agentic systems that need to
-            ship?
+          <h3 className="max-w-[560px] text-balance text-3xl font-medium leading-[1.05] tracking-[-0.03em] text-fg md:text-5xl">
+            Working on hard LLM problems or agentic systems?
           </h3>
           <p className="mt-6 max-w-[480px] text-sm leading-relaxed text-muted md:text-base">
             I&apos;m open to conversations about LLM infrastructure, agentic
