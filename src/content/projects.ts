@@ -9,6 +9,19 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    title: 'LegalVisor',
+    category: 'Legal RAG platform',
+    description:
+      'Retrieval-augmented contract review under Indian law across 13 contract types. Hybrid BGE-M3 dense + sparse retrieval with reciprocal rank fusion over Qdrant, a bge-reranker-v2-m3 cross-encoder, and Qwen2.5-7B-AWQ served on vLLM behind an OpenAI-compatible API.',
+    highlights: [
+      '8 deterministic guardrails: injection, scope, n-gram citation grounding',
+      'Every flag carries a citation grounded to a retrieved chunk',
+      'Durable Temporal ingestion across a 9-service uv monorepo',
+    ],
+    tech: ['Python', 'FastAPI', 'vLLM', 'Qdrant', 'Temporal', 'PostgreSQL', 'Kubernetes', 'Next.js'],
+    github: 'https://github.com/Sam-364/LegalVisor',
+  },
+  {
     title: 'Inferno',
     category: 'LLM inference engine',
     description:

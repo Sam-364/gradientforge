@@ -22,7 +22,7 @@ All copy is data, not markup:
 | `src/content/stack.ts` | Stack rows |
 | `src/content/writing.ts` | Blog posts |
 
-The resume is served from `public/resume.pdf`.
+The resume is served from `public/resume.pdf` and the hero portrait from `public/profile.jpg` (4:3 or square, at least 1200px wide).
 
 ## Development
 

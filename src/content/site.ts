@@ -13,6 +13,7 @@ export const site = {
   timeZoneLabel: 'IST · UTC+05:30',
   email: 'sambitbarik70@gmail.com',
   resume: '/resume.pdf',
+  photo: '/profile.jpg',
   github: 'https://github.com/Sam-364',
   medium: 'https://medium.com/@DataDry',
 };

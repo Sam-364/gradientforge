@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Reveal from './Reveal';
 import LocalTime from './LocalTime';
 import SocialIcon from './SocialIcon';
@@ -9,7 +10,7 @@ export default function Hero() {
       {/* Bento: shared 1px borders via gap-px on a line-coloured parent */}
       <div className="grid grid-cols-2 gap-px bg-line md:grid-cols-12">
         {/* Intro */}
-        <div className="relative col-span-2 overflow-hidden bg-bg px-5 py-12 md:col-span-8 md:row-span-3 md:px-8 md:py-16">
+        <div className="relative col-span-2 overflow-hidden bg-bg px-5 py-12 md:col-span-8 md:row-span-2 md:px-8 md:py-16">
           <div className="gridlines fade-corner pointer-events-none absolute inset-0 opacity-70" aria-hidden="true" />
           <div className="relative flex h-full flex-col justify-center">
             <Reveal>
@@ -53,6 +54,21 @@ export default function Hero() {
           </div>
         </div>
 
+        {/* Portrait */}
+        <Reveal
+          delay={100}
+          className="group relative col-span-2 aspect-[3/2] overflow-hidden bg-bg md:col-span-4 md:aspect-[4/3]"
+        >
+          <Image
+            src={site.photo}
+            alt={`Portrait of ${site.name}`}
+            fill
+            priority
+            sizes="(min-width: 1120px) 373px, (min-width: 768px) 33vw, 100vw"
+            className="object-cover object-[50%_25%] grayscale transition duration-500 ease-out group-hover:grayscale-0"
+          />
+        </Reveal>
+
         {/* Status */}
         <Reveal delay={120} className="col-span-2 bg-bg px-5 py-6 md:col-span-4 md:px-6">
           <p className="label">Status</p>
@@ -82,9 +98,9 @@ export default function Hero() {
         </Reveal>
 
         {/* Now */}
-        <Reveal delay={280} className="col-span-2 bg-bg px-5 py-6 md:col-span-4 md:px-6">
+        <Reveal delay={280} className="col-span-2 bg-bg px-5 py-6 md:col-span-8 md:px-8">
           <p className="label">Now</p>
-          <ul className="mt-4 space-y-2">
+          <ul className="mt-4 grid gap-3 sm:grid-cols-3 sm:gap-6">
             {now.map((item) => (
               <li
                 key={item}

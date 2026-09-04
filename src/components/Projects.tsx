@@ -47,22 +47,20 @@ export default function Projects() {
           </Reveal>
         ))}
 
-        {/* Fill the last grid cell with a hatched link to the full repo list */}
-        <Reveal as="li" delay={140} className="flex bg-bg">
+        {/* Closing strip spans the remaining columns so the grid always fills */}
+        <Reveal as="li" delay={140} className="flex bg-bg md:col-span-2 lg:col-span-3">
           <a
             href={`${site.github}?tab=repositories`}
             target="_blank"
             rel="noopener noreferrer"
-            className="hatch group flex min-h-[220px] w-full flex-col justify-between px-5 py-6 transition-colors hover:bg-raise md:px-6 md:py-7"
+            className="hatch group flex w-full flex-col gap-3 px-5 py-6 transition-colors hover:bg-raise sm:flex-row sm:items-center sm:justify-between md:px-6"
           >
-            <span className="label">More</span>
-            <span>
-              <span className="block text-xl font-medium tracking-tight text-fg">
-                All repositories
-              </span>
-              <span className="mt-2 block font-mono text-[11px] text-dim transition-colors group-hover:text-accent">
-                github.com/Sam-364 ↗
-              </span>
+            <span className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:gap-5">
+              <span className="label">More</span>
+              <span className="text-xl font-medium tracking-tight text-fg">All repositories</span>
+            </span>
+            <span className="font-mono text-[11px] text-dim transition-colors group-hover:text-accent">
+              github.com/Sam-364 ↗
             </span>
           </a>
         </Reveal>
