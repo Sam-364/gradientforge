@@ -1,121 +1,51 @@
-'use client';
-
-import { motion } from 'framer-motion';
-import {
-  FiGithub,
-  FiLinkedin,
-  FiTwitter,
-  FiMail,
-  FiArrowUpRight,
-} from 'react-icons/fi';
-import { SiMedium } from 'react-icons/si';
-
-const socials = [
-  {
-    name: 'Email',
-    handle: 'sambitbarik70@gmail.com',
-    href: 'mailto:sambitbarik70@gmail.com',
-    icon: FiMail,
-    color: 'hover:border-red-400/40 hover:text-red-400',
-  },
-  {
-    name: 'LinkedIn',
-    handle: 'sambit-kumar-barik',
-    href: 'https://www.linkedin.com/in/sambit-kumar-barik-1237ba204/',
-    icon: FiLinkedin,
-    color: 'hover:border-blue-400/40 hover:text-blue-400',
-  },
-  {
-    name: 'GitHub',
-    handle: 'Sam-364',
-    href: 'https://github.com/Sam-364',
-    icon: FiGithub,
-    color: 'hover:border-white/40 hover:text-white',
-  },
-  {
-    name: 'Twitter',
-    handle: '@Sambitk_7',
-    href: 'https://twitter.com/Sambitk_7',
-    icon: FiTwitter,
-    color: 'hover:border-sky-400/40 hover:text-sky-400',
-  },
-  {
-    name: 'Medium',
-    handle: '@DataDry',
-    href: 'https://medium.com/@DataDry',
-    icon: SiMedium,
-    color: 'hover:border-green-400/40 hover:text-green-400',
-  },
-];
+import Reveal from './Reveal';
+import SectionHeader from './SectionHeader';
+import SocialIcon from './SocialIcon';
+import { site, socials } from '@/content/site';
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-24 px-6">
-      <div className="max-w-4xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-16"
-        >
-          <p className="text-cyan-400 font-mono text-sm mb-3 tracking-wider uppercase">
-            let&apos;s connect
+    <section id="contact" className="scroll-mt-14 border-b border-line">
+      <SectionHeader index="06" title="Contact" note="Let's talk" />
+      <div className="grid grid-cols-1 gap-px bg-line md:grid-cols-12">
+        <Reveal className="bg-bg px-5 py-12 md:col-span-7 md:px-8 md:py-16">
+          <h3 className="max-w-[560px] text-3xl font-medium leading-[1.05] tracking-[-0.03em] text-fg md:text-5xl">
+            Have a model that needs to run faster, smaller, or closer to the
+            edge?
+          </h3>
+          <p className="mt-6 max-w-[480px] text-sm leading-relaxed text-muted md:text-base">
+            I&apos;m open to conversations about LLM infrastructure, computer
+            vision on constrained hardware, and roles where performance is the
+            product.
           </p>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Get In <span className="gradient-text">Touch</span>
-          </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto rounded-full mb-6" />
-          <p className="text-neutral-400 max-w-lg mx-auto text-lg">
-            I&apos;m always open to discussing new opportunities, interesting
-            projects, or collaborations in the AI/ML space. Let&apos;s connect!
-          </p>
-        </motion.div>
-
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-3xl mx-auto">
-          {socials.map((social, i) => {
-            const Icon = social.icon;
-            return (
-              <motion.a
-                key={social.name}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08 }}
-                className={`group flex items-center gap-4 p-5 rounded-2xl border border-white/5 bg-white/[0.02] transition-all duration-300 hover:bg-white/[0.04] hover:-translate-y-1 ${social.color}`}
-              >
-                <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center group-hover:bg-white/10 transition-colors shrink-0">
-                  <Icon className="text-xl" />
-                </div>
-                <div className="flex-grow min-w-0">
-                  <div className="text-sm text-neutral-500">{social.name}</div>
-                  <div className="text-white font-medium text-sm truncate">
-                    {social.handle}
-                  </div>
-                </div>
-                <FiArrowUpRight className="text-neutral-600 group-hover:text-current transition-colors shrink-0" />
-              </motion.a>
-            );
-          })}
-        </div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="text-center mt-12"
-        >
           <a
-            href="mailto:sambitbarik70@gmail.com"
-            className="inline-flex items-center gap-2 px-8 py-3.5 bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-xl font-medium hover:shadow-lg hover:shadow-cyan-500/25 transition-all duration-300 hover:-translate-y-0.5"
+            href={`mailto:${site.email}`}
+            className="link mt-10 inline-block break-all font-mono text-lg md:text-2xl"
           >
-            <FiMail />
-            Say Hello
+            {site.email}
           </a>
-        </motion.div>
+        </Reveal>
+
+        <ul className="flex flex-col bg-bg md:col-span-5">
+          {socials.map((s) => (
+            <li key={s.key} className="flex flex-1 border-b border-line last:border-b-0">
+              <a
+                href={s.href}
+                target={s.key === 'email' ? undefined : '_blank'}
+                rel={s.key === 'email' ? undefined : 'noopener noreferrer'}
+                className="group flex w-full items-center justify-between gap-4 px-5 py-4 transition-colors hover:bg-raise md:px-6"
+              >
+                <span className="flex items-center gap-3 text-sm text-fg">
+                  <SocialIcon name={s.key} className="text-base text-muted transition-colors group-hover:text-fg" />
+                  {s.name}
+                </span>
+                <span className="truncate font-mono text-[11px] text-dim transition-colors group-hover:text-fg">
+                  {s.handle} <span aria-hidden="true">↗</span>
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );

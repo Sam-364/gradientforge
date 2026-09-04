@@ -1,35 +1,30 @@
-import Navbar from '@/components/Navbar';
+import Nav from '@/components/Nav';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
 import Experience from '@/components/Experience';
-import Skills from '@/components/Skills';
 import Projects from '@/components/Projects';
-import Blog from '@/components/Blog';
+import Stack from '@/components/Stack';
+import Writing from '@/components/Writing';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
-import NeuralNetwork from '@/components/NeuralNetwork';
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen text-white overflow-x-hidden">
-      <NeuralNetwork />
-      <div className="relative z-10">
-        <Navbar />
+    <div
+      id="top"
+      className="relative mx-auto min-h-screen max-w-frame border-x border-line bg-bg"
+    >
+      <Nav />
+      <main>
         <Hero />
-        <div className="section-divider max-w-4xl mx-auto" />
         <About />
-        <div className="section-divider max-w-4xl mx-auto" />
         <Experience />
-        <div className="section-divider max-w-4xl mx-auto" />
-        <Skills />
-        <div className="section-divider max-w-4xl mx-auto" />
         <Projects />
-        <div className="section-divider max-w-4xl mx-auto" />
-        <Blog />
-        <div className="section-divider max-w-4xl mx-auto" />
+        <Stack />
+        <Writing />
         <Contact />
-        <Footer />
-      </div>
-    </main>
+      </main>
+      <Footer />
+    </div>
   );
 }

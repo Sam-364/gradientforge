@@ -1,117 +1,56 @@
-'use client';
-
-import { motion } from 'framer-motion';
-import { FiBriefcase, FiMapPin } from 'react-icons/fi';
-
-const experiences = [
-  {
-    title: 'Machine Learning Engineer - I',
-    company: 'Skylark Labs',
-    location: 'Pune, Maharashtra, India',
-    period: 'January 2024 — Present',
-    type: 'Full-time',
-    highlights: [
-      'Engineered 8+ production-grade AI pipelines using open-source LLMs (Llama, Llava, nllb) for multi-modal processing with 95%+ accuracy',
-      'Architected vLLM migration on Nvidia Triton, achieving 3.2x throughput improvement and 40% latency reduction across 50+ concurrent requests',
-      'Led Python-to-Rust server migration achieving 360% performance boost (5 → 23 FPS) and 60% memory reduction using PyO3 bindings',
-      'Implemented precision quantization (FP16, INT8, INT4) for 4.8x faster inference and 65% memory reduction with 100% accuracy retention',
-      'Developed Docker containerization with CUDA/cuDNN for horizontal scaling across 10+ GPU instances',
-      'Spearheading custom VLA model development for robotics, inspired by OpenVLA and LeRobot architectures',
-    ],
-  },
-  {
-    title: 'Data Scientist Intern',
-    company: 'Rupeek Finance',
-    location: 'Bengaluru, Karnataka, India',
-    period: 'June 2023 — August 2023',
-    type: 'Full-time',
-    highlights: [
-      'Built fraud detection pipeline using Random Forest, XGBoost, and Gradient Boosting on 75,000+ credit reports — 96.8% precision, F1 = 0.94',
-      'Developed multi-class default risk models with attention-based DNNs, achieving AUC of 0.93 and reducing loan approval errors by 34%',
-    ],
-  },
-];
+import Reveal from './Reveal';
+import SectionHeader, { LABEL_GRID } from './SectionHeader';
+import { experiences } from '@/content/experience';
 
 export default function Experience() {
   return (
-    <section id="experience" className="py-24 px-6">
-      <div className="max-w-4xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+    <section id="experience" className="scroll-mt-14 border-b border-line">
+      <SectionHeader index="02" title="Experience" note="Where I've worked" />
+      {experiences.map((exp, i) => (
+        <Reveal
+          key={exp.company}
+          as="article"
+          delay={i * 60}
+          className={`${LABEL_GRID} border-b border-line last:border-b-0`}
         >
-          <p className="text-cyan-400 font-mono text-sm mb-3 tracking-wider uppercase">
-            where i&apos;ve worked
-          </p>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Work <span className="gradient-text">Experience</span>
-          </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto rounded-full" />
-        </motion.div>
-
-        <div className="relative">
-          {/* Animated timeline line */}
-          <div className="absolute left-0 md:left-8 top-0 bottom-0 w-px timeline-flow" />
-
-          {experiences.map((exp, i) => (
-            <motion.div
-              key={exp.company}
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.5, delay: i * 0.2 }}
-              className="relative pl-10 md:pl-20 mb-12 last:mb-0"
-            >
-              {/* Animated timeline dot */}
-              <div className="absolute left-0 md:left-8 top-1 -translate-x-1/2">
-                <div className="w-4 h-4 rounded-full bg-cyan-400 border-4 border-[#0a0a0a] neural-glow" />
-              </div>
-
-              <div className="p-6 rounded-2xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] transition-all duration-300 animated-border">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4">
-                  <div>
-                    <h3 className="text-xl font-bold text-white">
-                      {exp.title}
-                    </h3>
-                    <div className="flex items-center gap-2 text-cyan-400 font-medium mt-1">
-                      <FiBriefcase className="text-sm" />
-                      {exp.company}
-                    </div>
-                  </div>
-                  <div className="text-right mt-2 sm:mt-0">
-                    <div className="text-sm font-mono text-neutral-400">{exp.period}</div>
-                    <div className="flex items-center gap-1 text-xs text-neutral-500 justify-end mt-0.5">
-                      <FiMapPin className="text-xs" />
-                      {exp.location}
-                    </div>
-                  </div>
-                </div>
-
-                <ul className="space-y-3">
-                  {exp.highlights.map((h, j) => (
-                    <motion.li
-                      key={j}
-                      initial={{ opacity: 0, x: -10 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 0.05 * j + 0.2 }}
-                      className="text-sm text-neutral-400 leading-relaxed flex gap-3"
-                    >
-                      <span className="text-cyan-400/60 mt-1.5 shrink-0">
-                        ▹
-                      </span>
-                      {h}
-                    </motion.li>
-                  ))}
-                </ul>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
+          <div className="px-5 pt-6 md:border-r md:border-line md:px-6 md:py-7">
+            <div className="font-mono text-xs tabular-nums text-fg">{exp.period}</div>
+            <div className="mt-1.5 font-mono text-[11px] leading-relaxed text-dim">
+              <span className="md:block">{exp.location}</span>
+              <span className="md:hidden"> · </span>
+              <span className="md:block">{exp.type}</span>
+            </div>
+          </div>
+          <div className="px-5 pb-7 pt-4 md:px-8 md:py-7">
+            <h3 className="text-lg font-medium tracking-tight text-fg">{exp.role}</h3>
+            {exp.companyUrl ? (
+              <a
+                href={exp.companyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="link mt-1 inline-block text-sm text-muted"
+              >
+                {exp.company}
+              </a>
+            ) : (
+              <p className="mt-1 text-sm text-muted">{exp.company}</p>
+            )}
+            <ul className="mt-5 max-w-[720px] space-y-2.5">
+              {exp.highlights.map((h) => (
+                <li
+                  key={h}
+                  className="grid grid-cols-[16px_1fr] gap-2 text-sm leading-relaxed text-muted"
+                >
+                  <span className="font-mono text-dim" aria-hidden="true">
+                    —
+                  </span>
+                  <span>{h}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Reveal>
+      ))}
     </section>
   );
 }

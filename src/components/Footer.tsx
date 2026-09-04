@@ -1,52 +1,21 @@
-'use client';
-
-import { FiGithub, FiLinkedin, FiTwitter, FiMail } from 'react-icons/fi';
+import { site } from '@/content/site';
 
 export default function Footer() {
+  const year = new Date().getFullYear();
   return (
-    <footer className="border-t border-white/5 py-8 px-6">
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-        <div className="text-neutral-500 text-sm">
-          &copy; {new Date().getFullYear()} Sambit. Built with Next.js
-        </div>
-
-        <div className="flex items-center gap-4">
-          <a
-            href="https://github.com/Sam-364"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-neutral-500 hover:text-cyan-400 transition-colors"
-            aria-label="GitHub"
-          >
-            <FiGithub className="text-lg" />
-          </a>
-          <a
-            href="https://www.linkedin.com/in/sambit-kumar-barik-1237ba204/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-neutral-500 hover:text-cyan-400 transition-colors"
-            aria-label="LinkedIn"
-          >
-            <FiLinkedin className="text-lg" />
-          </a>
-          <a
-            href="https://twitter.com/Sambitk_7"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-neutral-500 hover:text-cyan-400 transition-colors"
-            aria-label="Twitter"
-          >
-            <FiTwitter className="text-lg" />
-          </a>
-          <a
-            href="mailto:sambitbarik70@gmail.com"
-            className="text-neutral-500 hover:text-cyan-400 transition-colors"
-            aria-label="Email"
-          >
-            <FiMail className="text-lg" />
-          </a>
-        </div>
+    <footer className="grid grid-cols-1 gap-px bg-line sm:grid-cols-3">
+      <div className="bg-bg px-5 py-4 font-mono text-[11px] text-dim md:px-6">
+        © {year} {site.name}
       </div>
+      <div className="bg-bg px-5 py-4 font-mono text-[11px] text-dim sm:text-center">
+        {site.brand} · Next.js · {site.locationShort}
+      </div>
+      <a
+        href="#top"
+        className="bg-bg px-5 py-4 font-mono text-[11px] text-dim transition-colors hover:text-fg sm:text-right md:px-6"
+      >
+        Back to top ↑
+      </a>
     </footer>
   );
 }

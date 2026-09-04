@@ -1,128 +1,144 @@
-'use client';
-
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { FiArrowDown } from 'react-icons/fi';
-
-const roles = [
-  'Machine Learning Engineer',
-  'AI Systems Architect',
-  'Deep Learning Researcher',
-  'Performance Engineer',
-  'LLM Infrastructure Builder',
-];
+import Reveal from './Reveal';
+import LocalTime from './LocalTime';
+import SocialIcon from './SocialIcon';
+import { metrics, now, site, socials } from '@/content/site';
 
 export default function Hero() {
-  const [roleIndex, setRoleIndex] = useState(0);
-  const [text, setText] = useState('');
-  const [isDeleting, setIsDeleting] = useState(false);
-
-  useEffect(() => {
-    const currentRole = roles[roleIndex];
-
-    const timeout = setTimeout(
-      () => {
-        if (!isDeleting) {
-          setText(currentRole.slice(0, text.length + 1));
-          if (text === currentRole) {
-            setTimeout(() => setIsDeleting(true), 2000);
-          }
-        } else {
-          setText(currentRole.slice(0, text.length - 1));
-          if (text === '') {
-            setIsDeleting(false);
-            setRoleIndex((prev) => (prev + 1) % roles.length);
-          }
-        }
-      },
-      isDeleting ? 40 : 80
-    );
-
-    return () => clearTimeout(timeout);
-  }, [text, isDeleting, roleIndex]);
-
   return (
-    <section
-      id="home"
-      className="relative min-h-screen flex items-center justify-center px-6"
-    >
-      <div className="max-w-4xl mx-auto text-center relative z-10">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5 }}
-          className="inline-block mb-6 px-4 py-2 rounded-full border border-cyan-500/20 bg-cyan-500/5 neural-glow"
-        >
-          <span className="text-cyan-400 font-mono text-sm">
-            {'>'} Hello, world! I&apos;m
-          </span>
-        </motion.div>
+    <section className="border-b border-line" aria-labelledby="hero-title">
+      {/* Bento: shared 1px borders via gap-px on a line-coloured parent */}
+      <div className="grid grid-cols-2 gap-px bg-line md:grid-cols-12">
+        {/* Intro */}
+        <div className="relative col-span-2 overflow-hidden bg-bg px-5 py-12 md:col-span-8 md:row-span-3 md:px-8 md:py-16">
+          <div className="gridlines fade-corner pointer-events-none absolute inset-0 opacity-70" aria-hidden="true" />
+          <div className="relative flex h-full flex-col justify-center">
+            <Reveal>
+              <p className="label">
+                {site.role} · {site.company.name}
+              </p>
+            </Reveal>
+            <Reveal delay={80}>
+              <h1
+                id="hero-title"
+                className="mt-7 text-[40px] font-medium leading-[1.02] tracking-[-0.03em] text-fg sm:text-5xl md:text-6xl lg:text-[68px]"
+              >
+                {site.name}
+              </h1>
+            </Reveal>
+            <Reveal delay={160}>
+              <p className="mt-7 max-w-[560px] text-base leading-relaxed text-muted md:text-lg">
+                I turn research models into production systems: LLM serving on
+                Triton and vLLM, quantized vision pipelines running at the edge,
+                and the Rust that makes them fast.
+              </p>
+            </Reveal>
+            <Reveal delay={240}>
+              <div className="mt-10 flex flex-wrap gap-3">
+                <a
+                  href="#projects"
+                  className="inline-flex items-center gap-2 bg-fg px-4 py-2.5 text-sm font-medium text-bg transition-colors hover:bg-white"
+                >
+                  View projects <span aria-hidden="true">↓</span>
+                </a>
+                <a
+                  href={site.resume}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 border border-line-strong px-4 py-2.5 text-sm text-fg transition-colors hover:bg-raise"
+                >
+                  Resume <span aria-hidden="true">↗</span>
+                </a>
+              </div>
+            </Reveal>
+          </div>
+        </div>
 
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 tracking-tight"
-        >
-          <span className="shimmer">Sambit</span>
-        </motion.h1>
+        {/* Status */}
+        <Reveal delay={120} className="col-span-2 bg-bg px-5 py-6 md:col-span-4 md:px-6">
+          <p className="label">Status</p>
+          <div className="mt-4 flex items-center gap-3 text-sm text-fg">
+            <span className="blink h-2 w-2 shrink-0 rounded-full bg-accent" aria-hidden="true" />
+            Open to select collaborations
+          </div>
+          <p className="mt-2 text-sm leading-relaxed text-muted">
+            Currently MLE I at{' '}
+            <a href={site.company.url} target="_blank" rel="noopener noreferrer" className="link">
+              {site.company.name}
+            </a>
+            , shipping multi-modal AI for the physical world.
+          </p>
+        </Reveal>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="text-xl md:text-2xl text-neutral-400 mb-8 h-10 flex items-center justify-center"
-        >
-          <span className="font-mono">{text}</span>
-          <span className="animate-pulse text-cyan-400 ml-0.5">|</span>
-        </motion.div>
+        {/* Local time */}
+        <Reveal delay={200} className="col-span-2 bg-bg px-5 py-6 md:col-span-4 md:px-6">
+          <p className="label">Local time · {site.locationShort}</p>
+          <LocalTime
+            timeZone={site.timeZone}
+            className="mt-3 block font-mono text-3xl tabular-nums tracking-tight text-fg md:text-4xl"
+          />
+          <p className="mt-2 font-mono text-[11px] text-dim">
+            {site.timeZoneLabel} · {site.coordinates}
+          </p>
+        </Reveal>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.6 }}
-          className="text-neutral-500 max-w-2xl mx-auto mb-12 text-lg leading-relaxed"
-        >
-          Building production-grade AI systems with expertise in LLMs,
-          high-performance inference, and computer vision. Turning complex ML
-          problems into scalable, real-world solutions.
-        </motion.p>
+        {/* Now */}
+        <Reveal delay={280} className="col-span-2 bg-bg px-5 py-6 md:col-span-4 md:px-6">
+          <p className="label">Now</p>
+          <ul className="mt-4 space-y-2">
+            {now.map((item) => (
+              <li
+                key={item}
+                className="grid grid-cols-[14px_1fr] gap-2 text-sm leading-snug text-muted"
+              >
+                <span className="font-mono text-dim" aria-hidden="true">
+                  —
+                </span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </Reveal>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.8 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center"
-        >
-          <a
-            href="#projects"
-            className="group px-8 py-3.5 bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-xl font-medium hover:shadow-lg hover:shadow-cyan-500/25 transition-all duration-300 hover:-translate-y-0.5"
+        {/* Metrics strip */}
+        {metrics.map((m, i) => (
+          <Reveal
+            key={m.label}
+            delay={320 + i * 60}
+            className="col-span-1 bg-bg px-5 py-5 md:col-span-3 md:px-6"
           >
-            View My Work
-            <span className="inline-block ml-2 transition-transform group-hover:translate-x-1">
-              &rarr;
-            </span>
-          </a>
-          <a
-            href="/resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-8 py-3.5 border border-cyan-500/30 text-cyan-400 rounded-xl font-medium hover:bg-cyan-500/10 transition-all duration-300 hover:-translate-y-0.5"
-          >
-            Download Resume
-          </a>
-        </motion.div>
+            <div className="font-mono text-2xl tabular-nums tracking-tight text-fg">{m.value}</div>
+            <div className="mt-1.5 text-xs leading-snug text-muted">{m.label}</div>
+          </Reveal>
+        ))}
       </div>
 
-      <motion.a
-        href="#about"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 1 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 text-neutral-600 hover:text-cyan-400 transition-colors z-10"
-      >
-        <FiArrowDown className="text-2xl animate-bounce" />
-      </motion.a>
+      {/* Social strip */}
+      <ul className="grid grid-cols-2 gap-px border-t border-line bg-line md:grid-cols-5">
+        {socials.map((s, i) => (
+          <li
+            key={s.key}
+            className={`bg-bg ${i === socials.length - 1 ? 'col-span-2 md:col-span-1' : ''}`}
+          >
+            <a
+              href={s.href}
+              target={s.key === 'email' ? undefined : '_blank'}
+              rel={s.key === 'email' ? undefined : 'noopener noreferrer'}
+              className="group flex h-full items-center justify-between gap-3 px-5 py-4 transition-colors hover:bg-raise md:px-6"
+            >
+              <span className="flex min-w-0 items-center gap-3">
+                <SocialIcon name={s.key} className="shrink-0 text-base text-muted transition-colors group-hover:text-fg" />
+                <span className="flex min-w-0 flex-col">
+                  <span className="text-sm text-fg">{s.name}</span>
+                  <span className="truncate font-mono text-[11px] text-dim">{s.handle}</span>
+                </span>
+              </span>
+              <span className="font-mono text-xs text-dim transition-colors group-hover:text-accent" aria-hidden="true">
+                ↗
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
     </section>
   );
 }

@@ -1,32 +1,29 @@
 import type { Metadata } from 'next';
-import { Inter, JetBrains_Mono } from 'next/font/google';
+import { GeistSans } from 'geist/font/sans';
+import { GeistMono } from 'geist/font/mono';
 import './globals.css';
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ['latin'],
-  variable: '--font-mono',
-});
-
 export const metadata: Metadata = {
-  title: 'Sambit | Machine Learning Engineer',
+  title: 'Sambit Kumar Barik — Machine Learning Engineer',
   description:
-    'Machine Learning Engineer specializing in production-grade AI systems, LLMs, computer vision, and high-performance inference optimization.',
+    'Machine Learning Engineer at Skylark Labs building production inference systems: LLM serving on Triton and vLLM, quantized computer vision, and Rust-backed pipelines.',
   keywords: [
-    'Machine Learning',
-    'AI',
-    'Deep Learning',
-    'LLM',
-    'Portfolio',
-    'Sambit',
+    'Sambit Kumar Barik',
+    'Machine Learning Engineer',
+    'LLM inference',
+    'vLLM',
+    'Triton',
+    'Computer Vision',
+    'Rust',
+    'GradientForge',
   ],
   icons: {
     icon: '/favicon.svg',
   },
   openGraph: {
-    title: 'Sambit | Machine Learning Engineer',
+    title: 'Sambit Kumar Barik — Machine Learning Engineer',
     description:
-      'Building production-grade AI systems with expertise in LLMs, computer vision, and high-performance inference optimization.',
+      'Production inference systems: LLM serving, quantized vision pipelines, and the Rust that makes them fast.',
     type: 'website',
   },
 };
@@ -37,12 +34,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body
-        className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}
-      >
-        {children}
-      </body>
+    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
+      <body className="font-sans">{children}</body>
     </html>
   );
 }

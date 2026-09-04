@@ -1,104 +1,56 @@
-'use client';
+import Reveal from './Reveal';
+import SectionHeader, { LABEL_GRID } from './SectionHeader';
+import { site } from '@/content/site';
 
-import { motion } from 'framer-motion';
-import { FiAward, FiCpu, FiTrendingUp, FiTarget } from 'react-icons/fi';
-
-const stats = [
-  { icon: FiAward, value: '2+', label: 'Years Experience', color: 'cyan' },
-  { icon: FiCpu, value: '8+', label: 'Production AI Pipelines', color: 'blue' },
-  { icon: FiTrendingUp, value: '360%', label: 'Performance Boost', color: 'violet' },
-  { icon: FiTarget, value: '95%+', label: 'Model Accuracy', color: 'emerald' },
+const facts = [
+  { k: 'Based in', v: site.location },
+  { k: 'Education', v: 'NIT Rourkela' },
+  { k: 'Currently', v: `${site.company.name}, since 2024` },
+  { k: 'Focus', v: 'LLM inference, computer vision, robotics' },
 ];
-
-const colorMap: Record<string, string> = {
-  cyan: 'text-cyan-400 bg-cyan-400/10 border-cyan-400/20',
-  blue: 'text-blue-400 bg-blue-400/10 border-blue-400/20',
-  violet: 'text-violet-400 bg-violet-400/10 border-violet-400/20',
-  emerald: 'text-emerald-400 bg-emerald-400/10 border-emerald-400/20',
-};
 
 export default function About() {
   return (
-    <section id="about" className="py-24 px-6 relative">
-      <div className="max-w-6xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-16"
-        >
-          <p className="text-cyan-400 font-mono text-sm mb-3 tracking-wider uppercase">
-            who i am
-          </p>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            About <span className="gradient-text">Me</span>
-          </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto rounded-full" />
-        </motion.div>
-
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.5 }}
-          >
-            <p className="text-neutral-300 text-base leading-relaxed mb-5">
-              I&apos;m Sambit, a Machine Learning Engineer at{' '}
-              <span className="text-cyan-400 font-medium">Skylark Labs</span>,
-              where I build production-grade AI systems that push the boundaries
-              of performance and scalability. My work spans multi-modal AI
-              pipelines, high-performance inference optimization, and
-              cutting-edge model deployment.
+    <section id="about" className="scroll-mt-14 border-b border-line">
+      <SectionHeader index="01" title="About" note="Who I am" />
+      <div className={LABEL_GRID}>
+        <dl className="border-b border-line md:border-b-0 md:border-r">
+          {facts.map((f) => (
+            <div
+              key={f.k}
+              className="flex items-baseline justify-between gap-4 border-b border-line px-5 py-3.5 last:border-b-0 md:block md:px-6 md:py-4"
+            >
+              <dt className="label">{f.k}</dt>
+              <dd className="text-right text-[13px] text-muted md:mt-1.5 md:text-left">{f.v}</dd>
+            </div>
+          ))}
+        </dl>
+        <Reveal className="px-5 py-8 md:px-8 md:py-10">
+          <div className="max-w-[680px] space-y-5 text-[15px] leading-relaxed text-muted md:text-base">
+            <p>
+              I&apos;m {site.firstName}, a Machine Learning Engineer at{' '}
+              <a href={site.company.url} target="_blank" rel="noopener noreferrer" className="link">
+                {site.company.name}
+              </a>
+              , where I build production AI systems that have to hold up under
+              real load: multi-modal pipelines, high-performance inference, and
+              model deployment on constrained hardware.
             </p>
-            <p className="text-neutral-300 text-base leading-relaxed mb-5">
-              With a background from{' '}
-              <span className="text-cyan-400 font-medium">
-                NIT Rourkela
-              </span>
-              , I specialize in taking complex ML research and transforming it
-              into real-world solutions — from migrating Python servers to
-              Rust for 360% performance gains, to implementing tensor
-              parallelism for 3.2x throughput improvements on Triton
-              Inference Server.
+            <p>
+              I studied at <span className="text-fg">NIT Rourkela</span> and
+              spend most of my time on the gap between a paper and a service.
+              That has meant migrating Python servers to Rust for a 360%
+              performance gain, and bringing tensor parallelism to Triton
+              Inference Server for 3.2× the throughput.
             </p>
-            <p className="text-neutral-300 text-base leading-relaxed">
-              I&apos;m deeply passionate about LLMs, reinforcement learning,
-              graph neural networks, and building the infrastructure that
-              makes AI practical and powerful at scale.
+            <p>
+              Outside of work I read and write about LLM internals,
+              reinforcement learning and graph neural networks, and I keep
+              coming back to the infrastructure that makes AI practical at
+              scale.
             </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="grid grid-cols-2 gap-4"
-          >
-            {stats.map((stat, i) => {
-              const Icon = stat.icon;
-              return (
-                <motion.div
-                  key={stat.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.1 * i }}
-                  className={`group relative p-6 rounded-2xl border ${colorMap[stat.color]} backdrop-blur-sm hover:scale-105 transition-transform duration-300 overflow-hidden`}
-                >
-                  <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <Icon className="text-2xl mb-3" />
-                  <div className="text-3xl font-bold text-white mb-1">
-                    {stat.value}
-                  </div>
-                  <div className="text-sm text-neutral-400">{stat.label}</div>
-                </motion.div>
-              );
-            })}
-          </motion.div>
-        </div>
+          </div>
+        </Reveal>
       </div>
     </section>
   );
