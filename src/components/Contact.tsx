@@ -10,13 +10,13 @@ export default function Contact() {
       <div className="grid grid-cols-1 gap-px bg-line md:grid-cols-12">
         <Reveal className="bg-bg px-5 py-12 md:col-span-7 md:px-8 md:py-16">
           <h3 className="max-w-[560px] text-3xl font-medium leading-[1.05] tracking-[-0.03em] text-fg md:text-5xl">
-            Have a model that needs to run faster, smaller, or closer to the
-            edge?
+            Working on hard LLM problems or agentic systems that need to
+            ship?
           </h3>
           <p className="mt-6 max-w-[480px] text-sm leading-relaxed text-muted md:text-base">
-            I&apos;m open to conversations about LLM infrastructure, computer
-            vision on constrained hardware, and roles where performance is the
-            product.
+            I&apos;m open to conversations about LLM infrastructure, agentic
+            and retrieval systems, guardrails and evals, and roles where
+            getting the model into production is the real work.
           </p>
           <a
             href={`mailto:${site.email}`}
