@@ -39,8 +39,8 @@ export const socials: {
   {
     key: 'x',
     name: 'X',
-    handle: '@Sambitk_7',
-    href: 'https://twitter.com/Sambitk_7',
+    handle: '@l0stc0ntext',
+    href: 'https://x.com/l0stc0ntext',
   },
   {
     key: 'medium',
