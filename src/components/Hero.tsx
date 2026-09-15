@@ -78,7 +78,7 @@ export default function Hero() {
             Open to select collaborations
           </div>
           <p className="mt-2 text-sm leading-relaxed text-muted">
-            Currently MLE I at{' '}
+            Currently MLE at{' '}
             <a href={site.company.url} target="_blank" rel="noopener noreferrer" className="link">
               {site.company.name}
             </a>
